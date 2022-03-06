@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one Coral
-router.get("/:id", [auth, getCorals], (req, res, next) => {
+router.get("/:id",  getCorals, (req, res, next) => {
   res.send(res.corals);
 });
 

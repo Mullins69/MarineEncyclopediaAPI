@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one seabird
-router.get("/:id", [auth, getSeabirds], (req, res, next) => {
+router.get("/:id",  getSeabirds, (req, res, next) => {
   res.send(res.seabirds);
 });
 

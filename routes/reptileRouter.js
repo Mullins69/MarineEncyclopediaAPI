@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one reptile
-router.get("/:id", [auth, getReptiles], (req, res, next) => {
+router.get("/:id",  getReptiles, (req, res, next) => {
   res.send(res.reptiles);
 });
 

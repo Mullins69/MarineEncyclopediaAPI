@@ -70,7 +70,7 @@ router.post("/", auth, async (req, res, next) => {
 });
 
 // UPDATE a fish
-router.put("/:id", [auth, getFishes], async (req, res, next) => {
+router.put("/:id",  getFishes, async (req, res, next) => {
   if (req.user._id !== res.fishes.created_by)
     res
       .status(400)

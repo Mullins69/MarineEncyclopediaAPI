@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one ecosystem
-router.get("/:id", [auth, getEcosystems], (req, res, next) => {
+router.get("/:id", getEcosystems, (req, res, next) => {
   res.send(res.ecosystems);
 });
 

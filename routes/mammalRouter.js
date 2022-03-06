@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one mammal
-router.get("/:id", [auth, getMammals], (req, res, next) => {
+router.get("/:id", getMammals, (req, res, next) => {
   res.send(res.mammals);
 });
 
