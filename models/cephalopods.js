@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const encyclopediaSchema = new mongoose.Schema({
-  product_id:{
+const cephalopodsSchema = new mongoose.Schema({
+  encyclopedia_id:{
     type: String
   },
   title: {
@@ -12,6 +12,24 @@ const encyclopediaSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  distribution:{
+    type: String,
+    required: false,
+  },
+  habitat:{
+    type: String,
+    required: false,
+  },
+  feedinghabits:{
+    type: String,
+    required: false,
+  }
+  ,
+  taxonomy:{
+    type: String,
+    required: false,
+  }
+  ,
   description: {
     type: String,
     required: true,
@@ -26,4 +44,4 @@ const encyclopediaSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Encyclopedia", encyclopediaSchema);
+module.exports = mongoose.model("Cephalopods", cephalopodsSchema);

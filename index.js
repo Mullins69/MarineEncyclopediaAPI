@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const contactRoute = require("./routes/contactAPI");
 const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter")
-const encyclopediaRouter = require("./routes/encyclopediaRouter")
+const cephalopodRouter = require("./routes/cephalopodRouter")
 // Setting up MongoDB connection
 mongoose.connect(process.env.DBURL, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -25,7 +25,7 @@ app.get("/", (req, res, next) => {
 app.use("/users", userRouter);
 app.use("/product", productRouter);
 app.use("/contact", contactRoute);
-app.use("/encyclopedia", encyclopediaRouter);
+app.use("/cephalopod", cephalopodRouter);
 
 app.set("port", process.env.PORT || 6969);
 app.listen(app.get("port"), (server) => {

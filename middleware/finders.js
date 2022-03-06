@@ -1,7 +1,7 @@
 // This is used to find various Schemas
 const User = require("../models/user");
 const Product = require("../models/product");
-const Encyclopedia = require("../models/encyclopedia");
+const Cephalopods = require("../models/cephalopods");
 
 async function getUser(req, res, next) {
   let user;
@@ -27,16 +27,16 @@ async function getProduct(req, res, next) {
   res.product = product;
   next();
 }
-async function getEncyclopedia(req, res, next) {
-  let encyclopedia;
+async function getCephalopods(req, res, next) {
+  let cephalopods;
   try {
-    encyclopedia = await Encyclopedia.findById(req.params.id);
-    if (!encyclopedia) res.status(404).json({ message: "Could not find Encyclopedia" });
+    cephalopods = await Cephalopods.findById(req.params.id);
+    if (!cephalopods) res.status(404).json({ message: "Could not find Cephalopod" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-  res.encyclopedia = encyclopedia;
+  res.cephalopods = cephalopods;
   next();
 }
 
-module.exports = { getUser, getProduct, getEncyclopedia };
+module.exports = { getUser, getProduct, getCephalopods };
