@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one cephalopod
-router.get("/:id", [auth, getCephalopods], (req, res, next) => {
+router.get("/:id", getCephalopods, (req, res, next) => {
   res.send(res.cephalopods);
 });
 
