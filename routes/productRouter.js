@@ -9,7 +9,7 @@ const { getUser, getProduct } = require("../middleware/finders");
 const router = express.Router();
 
 // GET all products
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const products = await product.find();
     res.status(201).send(products);
