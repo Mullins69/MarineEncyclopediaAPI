@@ -225,5 +225,7 @@ router.put("/cart", [auth, getProduct], async (req, res, next) => {
   }
 });
 //clears the user cart
-router.delete("/cart/:id", [auth, getProduct], async (req, res, next) => {});
+router.delete("/cart/:id", [auth, getProduct], async (req, res, next) => {
+  
+});
 module.exports = router;
