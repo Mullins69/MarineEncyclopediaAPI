@@ -35,7 +35,9 @@ router.patch("/", async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
-  if (!user) res.status(404).json({ message: "Could not find user" });
+  if (!user) {
+    res.status(404).json({ message: "Could not find user" });
+  }
   if (await bcrypt.compare(password, user.password)) {
     try {
       const access_token = jwt.sign(
@@ -44,7 +46,7 @@ router.patch("/", async (req, res, next) => {
       );
       res.status(201).json({ jwt: access_token });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.send(error)
     }
   } else {
     res
@@ -225,7 +227,5 @@ router.put("/cart", [auth, getProduct], async (req, res, next) => {
   }
 });
 //clears the user cart
-router.delete("/cart/:id", [auth, getProduct], async (req, res, next) => {
-  
-});
+router.delete("/cart/:id", [auth, getProduct], async (req, res, next) => {});
 module.exports = router;
