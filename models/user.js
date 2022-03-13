@@ -5,6 +5,11 @@ const userSchema = new mongoose.Schema({
   user_id:{
     type: String
   },
+  isadmin:{
+    type: Boolean,
+    default: false
+  }
+  ,
   fullname: {
     type: String,
     required: true,
