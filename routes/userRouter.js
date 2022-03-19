@@ -46,7 +46,7 @@ router.patch("/", async (req, res, next) => {
       );
       res.status(201).json({ jwt: access_token });
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
   } else {
     res
@@ -149,83 +149,5 @@ router.delete("/", auth, async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 });
-//getting all items in cart
-router.get("/cart", auth, async (req, res, next) => {
-  try {
-    const user = await User.findById(req.user._id);
-    res.status(201).json(user.cart);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
-//Adds a new item to the users cart
-router.post("/:id/cart", [auth, getProduct], async (req, res, next) => {
-  const user = await User.findById(req.user._id);
-  // console.log(user)
-  let product_id = res.product._id;
-  let title = res.product.title;
-  let category = res.product.category;
-  let img = res.product.img;
-  let price = res.product.price;
-  let quantity = req.body;
-  let created_by = req.user._id;
-
-  try {
-    user.cart.push({
-      product_id,
-      title,
-      category,
-      img,
-      price,
-      quantity,
-      created_by,
-    });
-    const updatedUser = await user.save();
-    res.status(201).json(updatedUser);
-  } catch (error) {
-    res.status(500).json(console.log(error));
-  }
-});
-//updates the items in the users cart
-router.put("/cart", [auth, getProduct], async (req, res, next) => {
-  const user = await User.findById(req.user._id);
-  const inCart = user.cart.some((prod) => prod._id == req.params.id);
-  if (inCart) {
-    product.quantity += req.body.quantity;
-    const updatedUser = await user.save();
-    try {
-      res.status(201).json(updatedUser.cart);
-    } catch (error) {
-      res.status(500).json(console.log(error));
-    }
-  } else {
-    try {
-      // console.log(Array.isArray(user.cart))
-      // user.cart = []
-      let product_id = res.product._id;
-      let title = res.product.title;
-      let category = res.product.category;
-      let img = res.product.img;
-      let price = res.product.price;
-      let quantity = req.body;
-      let created_by = req.user._id;
-      user.cart.push({
-        product_id,
-        title,
-        category,
-        img,
-        price,
-        quantity,
-        created_by,
-      });
-      const updatedUser = await user.save();
-      res.status(201).json(updatedUser.cart);
-    } catch (error) {
-      res.status(500).json(console.log(error));
-    }
-  }
-});
-//clears the user cart
-router.delete("/cart/:id", [auth, getProduct], async (req, res, next) => {});
-module.exports = router;
+module.exports = router

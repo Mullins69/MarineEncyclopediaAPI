@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const contactRoute = require("./routes/contactRouter");
 const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter")
+const cartRouter = require("./routes/cartRouter")
 const cephalopodRouter = require("./routes/cephalopodRouter")
 const coralRouter = require("./routes/coralRouter")
 const mammalRouter = require("./routes/mammalRouter")
@@ -31,6 +32,7 @@ app.get("/", (req, res, next) => {
 });
 app.use("/users", userRouter);
 app.use("/product", productRouter);
+app.use("/cart", cartRouter);
 app.use("/contact", contactRoute);
 app.use("/cephalopod", cephalopodRouter);
 app.use("/coral", coralRouter);
