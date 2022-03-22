@@ -138,6 +138,45 @@ router.put("/", auth, async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 });
+//Editing a user via id
+router.put("/admin/:id", [auth, getUser], async (req, res, next) => {
+  // Get user from DB using Schema
+  const user = await User.findById(res.user);
+
+  // Get info needed to update user
+  const { fullname, phone_number, password, street, city, zipcode, country } =
+    req.body;
+
+  // Set information
+  if (fullname) user.fullname = fullname;
+  if (phone_number) user.phone_number = phone_number;
+  if (street) user.street = street;
+  if (city) user.city = city;
+  if (zipcode) user.zipcode = zipcode;
+  if (country) user.country = country;
+  if (password) {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    user.password = hashedPassword;
+  }
+
+  try {
+    const updatedUser = await user.save();
+
+    try {
+      const access_token = jwt.sign(
+        JSON.stringify(updatedUser),
+        process.env.JWT_SECRET_KEY
+      );
+      res.status(201).json({ jwt: access_token, user: updatedUser });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+    // Dont just send user as object, create a JWT and send that too.
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // DELETE a user
 router.delete("/", auth, async (req, res, next) => {
