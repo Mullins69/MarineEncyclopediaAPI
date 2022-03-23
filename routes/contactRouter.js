@@ -139,7 +139,7 @@ at https//www.marine-ecyclopedia.web.app!.
 });
 router.post("/checkout", function (req, res, next) {
   const { email, cart, price } = req.body;
-
+  console.log(email, cart, price)
   let msg;
   try {
     cart.cart.forEach((item) => {
