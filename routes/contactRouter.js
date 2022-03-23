@@ -73,7 +73,7 @@ at https//www.marine-ecyclopedia.web.app has been deleted.
     }
   });
 });
-router.post('/Purchase', function(req, res, next){
+router.post("/Purchase", function (req, res, next) {
   const { email } = req.body;
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -104,8 +104,8 @@ at https//www.marine-ecyclopedia.web.app has been Confirmed!!!.
       res.send({ msg: "Message sent succesfully" });
     }
   });
-})
-router.post('/Register', function(req, res, next){
+});
+router.post("/Register", function (req, res, next) {
   const { email } = req.body;
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -136,52 +136,53 @@ at https//www.marine-ecyclopedia.web.app!.
       res.send({ msg: "Message sent succesfully" });
     }
   });
-})
-router.post('/checkout', function(req, res, next){
-  const { email , cart , price} = req.body;
+});
+router.post("/checkout", function (req, res, next) {
+  const { email, cart, price } = req.body;
 
-  let msg
-try {
-  cart.cart.forEach(item => {
-    msg += `${ item.quantity.quantity } ${ item.title }'s bought for ${ item.quantity.quantity * item.price } \n`
-  })
+  let msg;
+  try {
+    cart.cart.forEach((item) => {
+      msg += `${item.quantity.quantity} ${item.title}'s bought for ${
+        item.quantity.quantity * item.price
+      } \n`;
+    });
 
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.MAIL,
-      pass: process.env.PASS,
-    },
-  });
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.MAIL,
+        pass: process.env.PASS,
+      },
+    });
 
-  var mailOptions = {
-    from: "MullinsWebSupp@gmail.com",
-    to: email,
-    subject: `CheckOut`,
-    text: `This is a confirmation that your product has been succefully purchase 
+    var mailOptions = {
+      from: "MullinsWebSupp@gmail.com",
+      to: email,
+      subject: `CheckOut`,
+      text: `This is a confirmation that your product has been succefully purchase 
 from https//www.marine-ecyclopedia.web.app!.
 
 ${msg}
 
 total ${price}
-`
-  };
+`,
+    };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-      res.status(400).send({ msg: "Email could not be sent" + error });
-    } else {
-      console.log("Email sent: " + info.response);
-      res.send({ msg: "Message sent succesfully" });
-    }
-  });
-} catch (error) {
-  res.send(error)
-}
-  
-})
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.status(400).send({ msg: "Email could not be sent" + error });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.send({ msg: "Message sent succesfully" });
+      }
+    });
+  } catch (error) {
+    res.status(501).send({messsage: error});
+  }
+});
 module.exports = router;
