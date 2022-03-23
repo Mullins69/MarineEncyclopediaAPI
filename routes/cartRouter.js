@@ -21,8 +21,6 @@ router.get("/", auth, async (req, res, next) => {
 
 //Adds a new item to the users cart
 router.post("/:id", [auth, getProduct], async (req, res, next) => {
-  const user = await User.findById(req.user.user_id);
-  const cart = await Cart.find({"user_id": {$regex : req.user._id}});
 
   // console.log(user)
   let product_id = res.product._id;
