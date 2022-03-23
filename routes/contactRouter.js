@@ -175,14 +175,14 @@ total ${price}
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
-        res.status(400).send({ msg: "Email could not be sent" + error });
+        res.status(400).json({ msg: "Email could not be sent" + error });
       } else {
         console.log("Email sent: " + info.response);
-        res.send({ msg: "Message sent succesfully" });
+        res.json({ msg: "Message sent succesfully" });
       }
     });
   } catch (error) {
-    res.status(501).send({messsage: error});
+    res.status(501).json({msg: error});
   }
 });
 module.exports = router;
