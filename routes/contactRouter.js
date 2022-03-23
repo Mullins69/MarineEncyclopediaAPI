@@ -142,7 +142,7 @@ router.post('/checkout', function(req, res, next){
 
   let msg = ""
 
-  cart.forEach(item => {
+  cart.cart.forEach(item => {
     msg += `${ item.quantity.quantity } ${ item.title }'s bought for ${ item.quantity.quantity * item.price } \n`
   })
 
