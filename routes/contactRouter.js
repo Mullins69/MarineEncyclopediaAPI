@@ -143,7 +143,7 @@ router.post('/checkout', function(req, res, next){
   let msg = ""
 
   cart.cart.forEach(item => {
-    msg += `${ item.quantity } ${ item.title }'s bought for ${ item.quantity * item.price } \n`
+    msg += `${ item.quantity.quantity } ${ item.title }'s bought for ${ item.quantity.quantity * item.price } \n`
   })
 
   var transporter = nodemailer.createTransport({
@@ -167,7 +167,7 @@ from https//www.marine-ecyclopedia.web.app!.
 ${msg}
 
 total ${price}
-`,
+`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
