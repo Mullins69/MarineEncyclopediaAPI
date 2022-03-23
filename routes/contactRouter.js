@@ -143,7 +143,7 @@ router.post('/checkout', function(req, res, next){
   let msg = ""
 
   cart.cart.forEach(item => {
-    msg += `${ item.quantity.quantity } ${ item.title }'s bought for ${ item.quantity.quantity * item.price } \n`
+    msg += `${ item.quantity.quantity } ${ item.title }'s bought for \n`
   })
 
   var transporter = nodemailer.createTransport({
