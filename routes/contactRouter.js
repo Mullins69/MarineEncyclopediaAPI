@@ -140,8 +140,8 @@ at https//www.marine-ecyclopedia.web.app!.
 router.post('/checkout', function(req, res, next){
   const { email , cart , price} = req.body;
 
-  let msg = ""
-
+  let msg
+try {
   cart.cart.forEach(item => {
     msg += `${ item.quantity.quantity } ${ item.title }'s bought for ${ item.quantity.quantity * item.price } \n`
   })
@@ -179,5 +179,9 @@ total ${price}
       res.send({ msg: "Message sent succesfully" });
     }
   });
+} catch (error) {
+  res.send(error)
+}
+  
 })
 module.exports = router;
