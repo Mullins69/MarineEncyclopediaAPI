@@ -142,13 +142,24 @@ router.post("/checkout", function (req, res, next) {
   console.log(email, cart, price);
   console.log("===================================");
   console.log(cart[0].cart);
-  let msg;
+  let msg = '';
   try {
-    cart.cart.forEach((item) => {
-      msg += `${item.quantity.quantity} ${item.title}'s bought for ${
-        item.quantity.quantity * item.price
-      } \n`;
-    });
+    
+    for(let i = 0; i < cart.length; i++){
+      for(let j = 0; j < cart[i].length; j++){
+        msg += `${cart[i].cart[j].quantity.quantity} ${cart[i].cart[j].title}'s bought for ${
+          cart[i].cart[j].quantity.quantity * cart[i].cart[j].price
+        } \n`;
+      }
+    }
+
+
+    console.log(msg)
+    // cart.cart.forEach((item) => {
+    //   msg += `${item.quantity.quantity} ${item.title}'s bought for ${
+    //     item.quantity.quantity * item.price
+    //   } \n`;
+    // });
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
