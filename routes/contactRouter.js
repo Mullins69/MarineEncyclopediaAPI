@@ -147,6 +147,7 @@ router.post("/checkout", function (req, res, next) {
     console.log(msg)
     cart.cart.forEach((item) => {
       item.forEach((data)=>{
+        console.log(data)
         msg += `${data.quantity.quantity} ${data.title}'s bought for ${
           data.quantity.quantity * data.price
         } \n`;
