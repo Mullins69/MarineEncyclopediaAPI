@@ -123,7 +123,7 @@ router.post("/Register", function (req, res, next) {
     to: email,
     subject: `ACCOUNT CREATED`,
     text: `This is a confirmation that your account has been succefully registered 
-at https//www.marine-ecyclopedia.web.app!.
+at www.marine-ecyclopedia.web.app !.
 `,
   };
 
@@ -145,7 +145,7 @@ router.post("/checkout", function (req, res, next) {
     cart.forEach((item) => {
       item.cart.forEach((data)=>{
         console.log(data)
-        msg += `${data.quantity.quantity} ${data.title}'s bought for ${
+        msg += `${data.quantity.quantity} ${data.title}'s bought for R${
           data.quantity.quantity * data.price
         } \n`;
       })
@@ -168,11 +168,11 @@ router.post("/checkout", function (req, res, next) {
       to: email,
       subject: `CheckOut`,
       text: `This is a confirmation that your product has been succefully purchase 
-from https//www.marine-ecyclopedia.web.app!.
+from www.marine-ecyclopedia.web.app !.
 
 ${msg}
 
-total ${price}
+total R${price}
 `,
     };
 
