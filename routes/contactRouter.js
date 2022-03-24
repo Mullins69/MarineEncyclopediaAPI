@@ -138,7 +138,7 @@ at www.marine-ecyclopedia.web.app !.
   });
 });
 router.post("/checkout", function (req, res, next) {
-  const { email, cart, price } = req.body;
+  const { email, cart, price ,street, city, country,zipcode} = req.body;
   console.log(email, cart, price);
   let msg = '';
   try {
@@ -173,6 +173,14 @@ from www.marine-ecyclopedia.web.app !.
 ${msg}
 
 total R${price}
+Shipping Address
+Street : ${street}
+City: ${city}
+Zipcode: ${zipcode}
+Country :${country}
+
+
+Please note that this site is made as an full-stack MEVN project made from inspiration about marine life, none of the products listed in the shop is official and available !
 `,
     };
 
