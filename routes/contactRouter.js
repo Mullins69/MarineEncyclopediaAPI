@@ -145,21 +145,16 @@ router.post("/checkout", function (req, res, next) {
   let msg = '';
   try {
     
-    for(let i = 0; i < cart.length; i++){
-      for(let j = 0; j < cart[i].length; j++){
-        msg += `${cart[i].cart[j].quantity.quantity} ${cart[i].cart[j].title}'s bought for ${
-          cart[i].cart[j].quantity.quantity * cart[i].cart[j].price
-        } \n`;
-      }
-    }
-
 
     console.log(msg)
-    // cart.cart.forEach((item) => {
-    //   msg += `${item.quantity.quantity} ${item.title}'s bought for ${
-    //     item.quantity.quantity * item.price
-    //   } \n`;
-    // });
+    cart.cart.forEach((item) => {
+      item.forEach((data)=>{
+        msg += `${data.quantity.quantity} ${data.title}'s bought for ${
+          data.quantity.quantity * data.price
+        } \n`;
+      })
+     
+    });
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
