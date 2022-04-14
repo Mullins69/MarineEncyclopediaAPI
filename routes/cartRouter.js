@@ -57,58 +57,6 @@ router.post("/:id", [auth, getProduct], async (req, res, next) => {
     res.status(500).json(console.log(error));
   }
 });
-// //updates the items in the users cart
-// router.put("/:id", [auth, getProduct], async (req, res, next) => {
-//   const user = await User.findById(req.user.user_id);
-//   const cart = await Cart.find({"user_id": {$regex : req.user._id}});
-//   const inCart = cart.cart.some((prod) => prod._id == req.params.id);
-
-//   if (inCart) {
-//     cart.quantity += req.body.quantity;
-//     const updatedUser = await cart.save();
-//     try {
-//       res.status(201).json(updatedUser);
-//     } catch (error) {
-//       res.status(500).json(console.log(error));
-//     }
-//   } else {
-
-//       let product_id = res.product._id;
-//   let title = res.product.title;
-//   let category = res.product.category;
-//   let img = res.product.img;
-//   let price = res.product.price;
-//   let quantity = req.body;
-//   let user_id = req.user._id;
-//   const carts = new Cart({
-
-//      product_id,
-//    title,
-//    category,
-//    img,
-//    price ,
-//    quantity,
-//    user_id,
-//   })
-//   try {
-//     carts.cart.push({
-    
-//       product_id,
-//       title,
-//       category,
-//       img,
-//       price,
-//       quantity,
-
-//     });
-//     const updatedCart = await carts.save();
-//     res.status(201).json(updatedCart);
-//   } catch (error) {
-//     res.status(500).json(console.log(error));
-//   }
-// }
-// });
-
 //Delete single cart
 router.delete('/single', auth, async(req, res, next)=>{
 

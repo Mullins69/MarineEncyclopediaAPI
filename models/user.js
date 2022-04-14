@@ -49,11 +49,6 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: Date.now,
   },
-  cart: {
-    type: Array,
-    required: false,
-    default: []
-  },
 });
 
 module.exports = mongoose.model("User", userSchema);

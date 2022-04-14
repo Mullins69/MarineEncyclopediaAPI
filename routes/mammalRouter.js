@@ -39,7 +39,7 @@ router.post("/", auth, async (req, res, next) => {
 
   img
     ? (mammals = new Mammals({
-        title,
+        title,  
         category,
         distribution,
         habitat,
